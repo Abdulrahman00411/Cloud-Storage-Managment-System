@@ -1,0 +1,61 @@
+ 
+Using that table :
+
+   CREATE TABLE Users (
+     user_id INT PRIMARY KEY,
+     username VARCHAR(50),
+     email VARCHAR(100),
+     password VARCHAR(100),
+     role VARCHAR(20));
+
+
+1. Fetch Data
+
+    SELECT * FROM Users;                //Fetch all records
+    SELECT username, email FROM Users;        //Fetch specific columns
+    SELECT * FROM Users WHERE role = 'Admin';      //Fetch with conditions
+    SELECT * FROM Users WHERE user_id = 5;    //Fetch by user_id
+    SELECT * FROM Users ORDER BY username ASC;    //Fetch with sorting
+    SELECT * FROM Users LIMIT 3;     // Fetch with limit
+
+
+2. Delete Data
+
+   Remove specific records or all data from the Users table.
+
+   DELETE FROM Users WHERE user_id = 5;   //Delete a specific record
+   DELETE FROM Users WHERE role = 'user';  //Delete records with a condition
+   DELETE FROM Users; //Delete all records (keeps table structure)
+
+
+3. Update Data
+
+   Modify existing records in the Users table.
+
+  -->  UPDATE Users      // Update a single record
+        SET email = 'new_email@gmail.com', role = 'Admin' WHERE user_id = 6;  
+
+  -->  UPDATE Users      // Update multiple records
+         SET password = 'new_secure_password' WHERE role = 'user';
+
+  --> UPDATE Users   //Update all records
+        SET role = 'Guest';
+
+
+4. Manage the Entire Table
+
+   Operations affecting the entire Users table.
+
+  
+  --> DROP TABLE Users;  // Drop the table (deletes table and all data)
+
+  --> TRUNCATE TABLE Users; //Truncate the table (deletes all data, keeps structure, resets auto-increment)
+  --> CREATE TABLE Users (                              // Create the table (if it doesn’t exist)
+      user_id INT PRIMARY KEY AUTO_INCREMENT,
+      username VARCHAR(50) NOT NULL,
+      email VARCHAR(100) UNIQUE,
+      password VARCHAR(100) NOT NULL, 
+      role VARCHAR(20) DEFAULT 'user');
+
+  --> Users ADD created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;  //ALTER TABLE 
+   --> DESCRIBE Users;  // View table structure:
